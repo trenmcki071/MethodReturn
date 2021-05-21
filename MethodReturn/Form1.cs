@@ -32,8 +32,11 @@ namespace MethodReturn
 
             int num1 = Convert.ToInt16(q1Num1Input.Text);
             int num2 = Convert.ToInt16(q1Num2Input.Text);
-           
+
             Add(num1, num2);
+            int result = Add(num1, num2);
+
+            q1Output.Text = $"{result} is the sum";
 
 
 
@@ -47,7 +50,11 @@ namespace MethodReturn
             /// 
             /// Input: 6, 2
             /// The area is 18 units squared
-
+            int length = Convert.ToInt16(lengthInput.Text);
+            int width = Convert.ToInt16(widthInput.Text);
+            Area(length, width);
+            int area = Area(length, width);
+            q2Output.Text = $"the area is {area} units squared";
 
 
             /// 3.  Get a value for question 3 and call the PrintPrice 
@@ -63,8 +70,10 @@ namespace MethodReturn
             /// 
             /// Input: 200
             /// The total price is $100.00
-
-
+            int copies = Convert.ToInt16(copiesInput.Text);
+            PrintPrice(copies);
+            double totalCost = PrintPrice(copies);
+            q3Output.Text = $"the price is ${totalCost}";
 
         }
 
@@ -72,11 +81,10 @@ namespace MethodReturn
         /// parameters, (x and y), adds them together, and then 
         /// returns the result back to the method call.       
 
-        public void Add(int x, int y)
+        public int Add(int x, int y)
         {
             int sum = x + y;
-
-            q1Output.Text = $"{x} + {y} = {sum}";
+            return sum;
         }
 
 
@@ -84,7 +92,11 @@ namespace MethodReturn
         /// parameters, (x and y), uses them to determine the 
         /// area of a rectangle , and then returns the result 
         /// back to the method call.
-
+        public int Area(int x, int y)
+        {
+            int area = x * y;
+            return area;
+        }
 
 
         /// 3. Create a method called PrintPrice, that accepts 1 
@@ -97,7 +109,27 @@ namespace MethodReturn
         /// 11 - 50 prints:  $0.75/print
         /// 51 - 100 prints:  $0.65/print
         /// 101 or over:  $0.50/print
-
+        public double PrintPrice(int prints)
+        {
+            double totalCost;
+            if(prints < 11)
+            {
+                totalCost = 1 * prints;
+            }
+            else if(prints > 10 && prints < 51)
+            {
+                totalCost = 0.75 * prints;
+            }
+            else if(prints > 50 && prints < 101)
+            {
+                totalCost = 0.65 * prints;
+            }
+            else
+            {
+                totalCost = 0.5 * prints;
+            }
+            return totalCost;
+        }
 
     }
 }
